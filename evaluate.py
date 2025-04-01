@@ -5,6 +5,12 @@ Script para evaluar el modelo entrenado y generar la matriz de confusión
 import os
 import tensorflow as tf
 from tensorflow.keras.models import load_model
+from tensorflow.keras.utils import get_custom_objects  # ⬅️ Agregado
+
+# Registrar capa personalizada si es necesaria (por errores como 'TrueDivide')
+get_custom_objects().update({
+    'TrueDivide': tf.keras.layers.Lambda(lambda x: x / 255.0)
+})
 
 # Importar módulos propios
 import config
@@ -40,7 +46,7 @@ def evaluar_modelo(modelo_path=None):
     
     # Cargar el modelo
     print(f"\n[3/4] Cargando modelo desde: {modelo_path}")
-    model = load_model(modelo_path)
+    model = load_model(modelo_path)  # ✅ Ya incluye el custom object registrado
     
     # Evaluar el modelo
     print("\n[3/4] Evaluando modelo...")
