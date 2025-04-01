@@ -49,17 +49,19 @@ EPOCAS = 15
 LEARNING_RATE = 0.001
 VALIDATION_SPLIT = 0.2
 
-# Parámetros para aumento de datos
+# En config.py
 DATA_AUGMENTATION = {
-    'rotation_range': 20,
-    'width_shift_range': 0.2,
-    'height_shift_range': 0.2,
-    'shear_range': 0.2,
-    'zoom_range': 0.2,
+    'rotation_range': 40,  # Aumentar rotación
+    'width_shift_range': 0.3,  # Más desplazamiento
+    'height_shift_range': 0.3,
+    'shear_range': 0.3,
+    'zoom_range': 0.3,
     'horizontal_flip': True,
+    'vertical_flip': True,  # Añadir flip vertical
+    'brightness_range': [0.7, 1.3],  # Variar brillo
     'fill_mode': 'nearest'
 }
 
 # Nombres de archivos para los modelos guardados
-MEJOR_MODELO = "mejor_modelo_botones.h5"
+MEJOR_MODELO = "mejor_modelo_transfer.h5"
 MODELO_FINAL = "modelo_final_botones.h5"
