@@ -1,5 +1,5 @@
 """
-Script para hacer predicciones con el modelo entrenado
+Script simplificado para hacer predicciones con el modelo entrenado
 """
 
 import os
@@ -13,9 +13,9 @@ import matplotlib.pyplot as plt
 import config
 from src.utils.heic_converter import convert_heic_in_directory
 
-def cargar_modelo(modelo_path=None):
+def cargar_modelo_simple(modelo_path=None):
     """
-    Carga un modelo entrenado
+    Carga el modelo simple
     
     Args:
         modelo_path: Ruta al modelo. Si es None, se usa el mejor modelo guardado.
@@ -24,7 +24,10 @@ def cargar_modelo(modelo_path=None):
         modelo cargado
     """
     if modelo_path is None:
-        modelo_path = os.path.join(config.MODELS_DIR, config.MEJOR_MODELO)
+        modelo_path = os.path.join(config.MODELS_DIR, 'simple_model_best.h5')
+    
+    if not os.path.exists(modelo_path):
+        raise FileNotFoundError(f"El modelo no existe en la ruta: {modelo_path}")
     
     print(f"Cargando modelo desde: {modelo_path}")
     return load_model(modelo_path)
@@ -52,7 +55,10 @@ def predecir_imagen(ruta_imagen, modelo):
     # Cargar y preprocesar la imagen
     img = image.load_img(ruta_imagen, target_size=(config.ALTURA_IMAGEN, config.ANCHO_IMAGEN))
     img_array = image.img_to_array(img)
-    img_array = np.expand_dims(img_array, axis=0) / 255.0
+    img_array = np.expand_dims(img_array, axis=0)
+    
+    # Preprocesar imagen específicamente para MobileNetV2
+    img_array = tf.keras.applications.mobilenet_v2.preprocess_input(img_array)
     
     # Hacer predicción
     prediccion = modelo.predict(img_array)
@@ -77,7 +83,7 @@ def mostrar_prediccion(ruta_imagen, clase_id, probabilidades, guardar=False):
         ruta_imagen = os.path.splitext(ruta_imagen)[0] + '.jpg'
     
     # Cargar imagen
-    img = image.load_img(ruta_imagen, target_size=(config.ALTURA_IMAGEN, config.ANCHO_IMAGEN))
+    img = image.load_img(ruta_imagen)
     
     # Crear figura
     plt.figure(figsize=(10, 6))
@@ -111,11 +117,16 @@ def main():
     Función principal
     """
     print("=" * 50)
-    print("PREDICCIÓN CON CLASIFICADOR DE BOTONES")
+    print("PREDICCIÓN CON CLASIFICADOR SIMPLE DE BOTONES")
     print("=" * 50)
     
     # Cargar modelo
-    modelo = cargar_modelo()
+    try:
+        modelo = cargar_modelo_simple()
+    except FileNotFoundError as e:
+        print(f"Error: {e}")
+        print("¿Has entrenado primero el modelo simple con train_simple_model.py?")
+        return
     
     # Obtener ruta a la imagen
     ruta_imagen = input("\nIngresa la ruta a la imagen del botón: ")
@@ -127,18 +138,21 @@ def main():
     
     # Hacer predicción
     print("\nRealizando predicción...")
-    clase_id, probabilidades = predecir_imagen(ruta_imagen, modelo)
-    
-    # Mostrar resultados
-    print("\nResultados de la predicción:")
-    print(f"Clase predicha: {config.CLASES[clase_id]}")
-    print("\nProbabilidades por clase:")
-    for i, clase in enumerate(config.CLASES):
-        print(f"{clase}: {probabilidades[i]*100:.2f}%")
-    
-    # Mostrar la imagen con la predicción
-    print("\nMostrando visualización...")
-    mostrar_prediccion(ruta_imagen, clase_id, probabilidades)
+    try:
+        clase_id, probabilidades = predecir_imagen(ruta_imagen, modelo)
+        
+        # Mostrar resultados
+        print("\nResultados de la predicción:")
+        print(f"Clase predicha: {config.CLASES[clase_id]}")
+        print("\nProbabilidades por clase:")
+        for i, clase in enumerate(config.CLASES):
+            print(f"{clase}: {probabilidades[i]*100:.2f}%")
+        
+        # Mostrar la imagen con la predicción
+        print("\nMostrando visualización...")
+        mostrar_prediccion(ruta_imagen, clase_id, probabilidades)
+    except Exception as e:
+        print(f"Error al realizar la predicción: {e}")
     
     print("\n" + "=" * 50)
 
