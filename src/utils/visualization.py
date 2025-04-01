@@ -56,7 +56,7 @@ def generar_matriz_confusion(model, test_generator, config, output_dir):
         cm: Matriz de confusión
     """
     # Obtener predicciones
-    test_steps = np.ceil(test_generator.samples / test_generator.batch_size)
+    test_steps = int(np.ceil(test_generator.samples / test_generator.batch_size))
     predictions = model.predict(test_generator, steps=test_steps)
     y_pred = np.argmax(predictions, axis=1)
     

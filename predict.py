@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 
 # Importar módulos propios
 import config
+from src.utils.heic_converter import convert_heic_in_directory
 
 def cargar_modelo(modelo_path=None):
     """
@@ -39,6 +40,15 @@ def predecir_imagen(ruta_imagen, modelo):
     Returns:
         clase_id, probabilidades
     """
+    # Convertir de HEIC a JPG si es necesario
+    if ruta_imagen.lower().endswith(('.heic')):
+        print(f"Convirtiendo imagen HEIC: {ruta_imagen}")
+        ruta_dir = os.path.dirname(ruta_imagen) or '.'
+        convert_heic_in_directory(ruta_dir, recursive=False)
+        ruta_imagen = os.path.splitext(ruta_imagen)[0] + '.jpg'
+        if not os.path.exists(ruta_imagen):
+            raise FileNotFoundError(f"No se pudo convertir la imagen HEIC a JPG: {ruta_imagen}")
+    
     # Cargar y preprocesar la imagen
     img = image.load_img(ruta_imagen, target_size=(config.ALTURA_IMAGEN, config.ANCHO_IMAGEN))
     img_array = image.img_to_array(img)
@@ -60,6 +70,12 @@ def mostrar_prediccion(ruta_imagen, clase_id, probabilidades, guardar=False):
         probabilidades: Probabilidades para cada clase
         guardar: Si se debe guardar la imagen
     """
+    # Convertir de HEIC a JPG si es necesario
+    if ruta_imagen.lower().endswith(('.heic')):
+        ruta_dir = os.path.dirname(ruta_imagen) or '.'
+        convert_heic_in_directory(ruta_dir, recursive=False)
+        ruta_imagen = os.path.splitext(ruta_imagen)[0] + '.jpg'
+    
     # Cargar imagen
     img = image.load_img(ruta_imagen, target_size=(config.ALTURA_IMAGEN, config.ANCHO_IMAGEN))
     

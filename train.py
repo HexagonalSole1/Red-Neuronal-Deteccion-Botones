@@ -13,6 +13,7 @@ import config
 from data.preprocesar_datos import crear_generadores_datos
 from models.modelo_cnn import crear_modelo_cnn
 from src.utils.visualization import plot_training_history
+from src.utils.heic_converter import prepare_image_directories
 
 # Configuración para reproducibilidad
 def set_seed(seed=42):
@@ -34,12 +35,16 @@ def train_model():
     os.makedirs(config.MODELS_DIR, exist_ok=True)
     os.makedirs(config.OUTPUT_DIR, exist_ok=True)
     
+    # Convertir imágenes HEIC a JPG si existen
+    print("\n[1/5] Preparando imágenes (convirtiendo HEIC si existen)...")
+    prepare_image_directories(config)
+    
     # Cargar los datos
-    print("\n[1/4] Cargando y preparando datos...")
+    print("\n[2/5] Cargando y preparando datos...")
     train_generator, validation_generator, test_generator = crear_generadores_datos(config)
     
     # Crear el modelo
-    print("\n[2/4] Creando modelo CNN...")
+    print("\n[3/5] Creando modelo CNN...")
     model = crear_modelo_cnn(config)
     model.summary()
     
@@ -68,7 +73,7 @@ def train_model():
     )
     
     # Entrenamiento
-    print("\n[3/4] Entrenando modelo...")
+    print("\n[4/5] Entrenando modelo...")
     start_time = datetime.now()
     history = model.fit(
         train_generator,
@@ -84,7 +89,7 @@ def train_model():
     model.save(os.path.join(config.MODELS_DIR, config.MODELO_FINAL))
     
     # Visualizar historial de entrenamiento
-    print("\n[4/4] Generando visualizaciones...")
+    print("\n[5/5] Generando visualizaciones...")
     plot_training_history(history, config.OUTPUT_DIR)
     
     print("\n" + "=" * 50)
