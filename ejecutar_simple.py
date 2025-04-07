@@ -72,7 +72,6 @@ def run_simplified_pipeline(model_type='transfer', k_folds=5, fine_tuning=False,
     print("\n[1/2] Creando estructura de proyecto...")
     create_project_structure()
     
-    # 2. Entrenamiento con validación cruzada
     print("\n[2/2] Iniciando entrenamiento con validación cruzada...")
     results = train_with_kfold_validation(
         k_folds=k_folds,

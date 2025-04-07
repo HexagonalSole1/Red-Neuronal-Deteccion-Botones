@@ -63,5 +63,5 @@ DATA_AUGMENTATION = {
 }
 
 # Nombres de archivos para los modelos guardados
-MEJOR_MODELO = "mejor_modelo_transfer_kfold.h5"
+MEJOR_MODELO = "simple_model_best.h5"
 MODELO_FINAL = "simple_model_final.h5"
