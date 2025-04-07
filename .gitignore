@@ -27,8 +27,8 @@ ENV/
 
 # Directorios de datos y modelos
 data/
-models/
-output/
+#models/
+#output/
 
 # Archivos de configuración de IDE
 .idea/

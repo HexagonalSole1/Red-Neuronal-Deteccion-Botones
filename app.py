@@ -16,7 +16,9 @@ import logging
 # Importar módulos propios
 import config
 from src.utils.heic_converter import convert_heic_in_directory
-
+from flask import Flask, request, jsonify, render_template, url_for, redirect, flash, send_from_directory
+from werkzeug.utils import secure_filename
+import os
 # Configurar logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -219,6 +221,7 @@ def health_check():
         'version': '2.1'  # Versión actualizada de la API
     })
 
+
 @app.route('/predict', methods=['POST'])
 def predict():
     """
@@ -227,7 +230,8 @@ def predict():
     # Verificar si hay un archivo en la petición
     if 'file' not in request.files:
         return jsonify({
-            'error': 'No se ha enviado ningún archivo'
+            'status': 'error',
+            'message': 'No se ha enviado ningún archivo'
         }), 400
     
     file = request.files['file']
@@ -235,13 +239,15 @@ def predict():
     # Verificar si se seleccionó un archivo
     if file.filename == '':
         return jsonify({
-            'error': 'No se ha seleccionado ningún archivo'
+            'status': 'error',
+            'message': 'No se ha seleccionado ningún archivo'
         }), 400
     
     # Verificar si el archivo tiene una extensión permitida
     if not allowed_file(file.filename):
         return jsonify({
-            'error': f'Formato de archivo no soportado. Formatos permitidos: {", ".join(ALLOWED_EXTENSIONS)}'
+            'status': 'error',
+            'message': f'Formato de archivo no soportado. Formatos permitidos: {", ".join(ALLOWED_EXTENSIONS)}'
         }), 400
     
     try:
@@ -277,23 +283,31 @@ def predict():
             logger.error(f"Clase ID {clase_id} no encontrada en el mapeo: {idx_to_class}")
             clase_nombre = f"Desconocido (ID: {clase_id})"
         
-        # Preparar respuesta
+        # Preparar respuesta compatible con el frontend
+        all_predictions = [
+            {
+                'class': idx_to_class.get(i, f"Desconocido (ID: {i})"),
+                'confidence': float(prob)
+            } 
+            for i, prob in enumerate(probabilidades)
+        ]
+        
+        # Ordenar predicciones de mayor a menor confianza
+        all_predictions.sort(key=lambda x: x['confidence'], reverse=True)
+        
         return jsonify({
-            'clase': clase_nombre,
-            'clase_id': int(clase_id),
-            'probabilidades': {
-                idx_to_class.get(i, f"Desconocido (ID: {i})"): float(prob) 
-                for i, prob in enumerate(probabilidades)
-            },
-            'confianza': float(probabilidades[clase_id])
+            'status': 'ok',
+            'prediction': clase_nombre,
+            'confidence': float(probabilidades[clase_id]),
+            'all_predictions': all_predictions
         })
     
     except Exception as e:
         logger.error(f"Error en endpoint /predict: {e}")
         return jsonify({
-            'error': f'Error al procesar la imagen: {str(e)}'
+            'status': 'error',
+            'message': f'Error al procesar la imagen: {str(e)}'
         }), 500
-
 # Endpoint adicional para visualizar información sobre las clases
 @app.route('/classes', methods=['GET'])
 def get_classes():
@@ -334,6 +348,24 @@ def get_classes():
             'error': f'Error al obtener información de clases: {str(e)}'
         }), 500
 
+# Añade esto en las importaciones al inicio del archivo
+from flask import render_template, jsonify
+
+# Ruta para ButtonCraft
+@app.route('/buttoncraft')
+def buttoncraft():
+    """Página de ButtonCraft con clasificador integrado"""
+    # Información básica para la plantilla (sin depender de módulos de configuración)
+    model_info = {
+        'num_classes': 6,  # Número fijo de clases de botones
+        'classes': ["Botones Metálicos", "Botones de Madera", "Botones Decorativos", 
+                   "Botones de Plástico", "Botones para Niños", "Botones Personalizados"],
+        'image_size': "224x224"
+    }
+    
+    return render_template('buttoncraft.html', info=model_info)
+
+    return render_template('buttoncraft.html', info=model_info)
 if __name__ == '__main__':
     # Configurar nivel de logging para depuración
     logging.getLogger().setLevel(logging.DEBUG)

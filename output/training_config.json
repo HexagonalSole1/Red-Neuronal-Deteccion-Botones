@@ -1,0 +1,9 @@
+{
+    "fine_tuning": false,
+    "epocas": 15,
+    "batch_size": 32,
+    "usar_pesos_clase": true,
+    "modelo": "mobilenet_frozen",
+    "backbone": "mobilenet",
+    "datetime": "2025-04-01 01:11:24.525092"
+}

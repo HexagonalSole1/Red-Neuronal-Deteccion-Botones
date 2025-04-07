@@ -484,7 +484,7 @@ def main():
     parser.add_argument('--no-class-weights', action='store_true',
                         help='No usar pesos de clase para entrenamiento')
     
-    args = parser.parse_args()
+    args = parser.parcse_args()
     
     # Ejecutar entrenamiento con validación cruzada
     train_with_kfold_validation(

@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ButtonCraft - Botones de Calidad</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFD166;
+            --dark: #292F36;
+            --light: #F7FFF7;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            scroll-behavior: smooth;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #FF8E53 100%);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        /* Button Categories */
+        .categories {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            color: var(--primary);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .button-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .button-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .button-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .button-info {
+            padding: 20px;
+        }
+        
+        .button-info h3 {
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .button-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .button-price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .badge-new {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--accent);
+            color: var(--dark);
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .about h2 {
+            color: white;
+        }
+        
+        .about h2::after {
+            background-color: var(--accent);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 30px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 30px 20px;
+            margin-bottom: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        /* Classifier Section */
+        .classifier {
+            padding: 80px 0;
+            background-color: #f0f8ff;
+        }
+        
+        #preview-container {
+            max-width: 100%;
+            height: 300px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        #preview-container:hover {
+            border-color: var(--primary);
+        }
+        
+        #image-preview {
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+        }
+        
+        .upload-icon {
+            font-size: 5rem;
+            color: #adb5bd;
+        }
+        
+        .upload-text {
+            margin-top: 10px;
+            color: #6c757d;
+        }
+        
+        #drop-zone {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .classifier-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .nav-tabs .nav-link.active {
+            border-bottom: 3px solid var(--primary);
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .camera-btn {
+            background-color: rgba(255, 107, 107, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .camera-btn:hover {
+            background-color: var(--primary);
+        }
+        
+        #loading-indicator {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: var(--dark);
+            color: white;
+        }
+        
+        .contact h2 {
+            color: white;
+        }
+        
+        .contact h2::after {
+            background-color: var(--primary);
+        }
+        
+        .contact-info {
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            color: var(--accent);
+        }
+        
+        .contact-text h4 {
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+        
+        .contact-form .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-form .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .contact-form .btn {
+            background-color: var(--primary);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a1e22;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .social-icons {
+            margin-bottom: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Custom Button */
+        .btn-custom {
+            background-color: var(--accent);
+            color: var(--dark);
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .btn-custom:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        /* Navbar */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            color: var(--dark);
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .nav-link.active {
+            color: var(--primary);
+        }
+        
+        /* Results section */
+        .result-info {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .result-card {
+            display: none;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        .result-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+        }
+        
+        .result-body {
+            padding: 20px;
+        }
+        
+        .progress-bar {
+            transition: width 1.5s ease-in-out;
+            background-color: var(--primary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .about-text, .about-image {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Indicador de carga -->
+    <div id="loading-indicator">
+        <div class="spinner"></div>
+        <p id="loading-message">Procesando imagen...</p>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-circle me-2"></i>ButtonCraft
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#categories">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#classifier">Clasificador</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1>Botones que dan vida a tus diseños</h1>
+                    <p>Fabricamos botones de la más alta calidad para la industria textil, moda y diseñadores independientes desde 1985.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#categories" class="btn btn-custom">Explorar Catálogo</a>
+                        <a href="#classifier" class="btn btn-light">Probar Clasificador</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestro Catálogo</h2>
+            </div>
+            
+            <div class="row">
+                <!-- Button Category 1 -->
+                <div class="col-md-4">
+                    <div class="button-card position-relative">
+                        <span class="badge-new">Nuevo</span>
+                        <img src="/static/img/buttons/boton_ancla.jpg" alt="Botones Metálicos" class="button-img">
+                        <div class="button-info">
+                            <h3>Botones Metálicos</h3>
+                            <p>Elegantes botones de metal para prendas formales y de alta costura.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="button-price">Desde $3.50</span>
+                                <a href="#contact" class="btn btn-sm btn-outline-primary">Consultar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Button Category 2 -->
+                <div class="col-md-4">
+                    <div class="button-card">
+                        <img src="/static/img/buttons/boton_azul.jpg" alt="Botones de Madera" class="button-img">
+                        <div class="button-info">
+                            <h3>Botones de azules</h3>
+                            <p>Botones naturales y sostenibles para un estilo rústico y ecológico.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="button-price">Desde $2.25</span>
+                                <a href="#contact" class="btn btn-sm btn-outline-primary">Consultar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Button Category 3 -->
+                <div class="col-md-4">
+                    <div class="button-card">
+                        <img src="/static/img/buttons/boton_diamante_morado.jpg" alt="Botones Decorativos" class="button-img">
+                        <div class="button-info">
+                            <h3>Botones Diamantes</h3>
+                            <p>Botones especiales con diseños artísticos para proyectos creativos.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="button-price">Desde $4.75</span>
+                                <a href="#contact" class="btn btn-sm btn-outline-primary">Consultar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Button Category 4 -->
+                <div class="col-md-4">
+                    <div class="button-card">
+                        <img src="/static/img/buttons/boton_multicolor.jpg" alt="Botones de Plástico" class="button-img">
+                        <div class="button-info">
+                            <h3>Botones de multicolor</h3>
+                            <p>Durables y versátiles para uso cotidiano en diversas prendas.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="button-price">Desde $1.50</span>
+                                <a href="#contact" class="btn btn-sm btn-outline-primary">Consultar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Button Category 5 -->
+                <div class="col-md-4">
+                    <div class="button-card position-relative">
+                        <span class="badge-new">Destacado</span>
+                        <img src="/static/img/buttons/boton_perrito_dorado.jpg" alt="Botones para Niños" class="button-img">
+                        <div class="button-info">
+                            <h3>Botones perritos</h3>
+                            <p>Coloridos y divertidos botones con figuras y diseños infantiles.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="button-price">Desde $2.00</span>
+                                <a href="#contact" class="btn btn-sm btn-outline-primary">Consultar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Button Category 6 -->
+                <div class="col-md-4">
+                    <div class="button-card">
+                        <img src="/static/img/buttons/boton_pinguino.jpg" alt="Botones Personalizados" class="button-img">
+                        <div class="button-info">
+                            <h3>Botones pinguinos</h3>
+                            <p>Crea tus propios botones con logos, diseños o colores específicos.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="button-price">Desde $5.00</span>
+                                <a href="#contact" class="btn btn-sm btn-outline-primary">Consultar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classifier Section -->
+    <section class="classifier" id="classifier">
+        <div class="container">
+            <div class="section-title">
+                <h2>Clasificador de Botones</h2>
+                <p class="text-center">¿No estás seguro de qué tipo de botón tienes? Sube una foto y nuestro clasificador te lo dirá.</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="classifier-card">
+                        <!-- Pestañas para seleccionar método de entrada -->
+                        <ul class="nav nav-tabs" id="imageTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="upload-tab" data-bs-toggle="tab" data-bs-target="#upload-content" type="button" role="tab" aria-controls="upload-content" aria-selected="true">
+                                    <i class="fas fa-upload me-2"></i>Subir imagen
+                                </button>
+                            </li>
+                        </ul>
+                        
+                        <div class="tab-content mt-4" id="imageTabsContent">
+                            <!-- Contenido de la pestaña de subir imagen -->
+                            <div class="tab-pane fade show active" id="upload-content" role="tabpanel" aria-labelledby="upload-tab">
+                                <form method="POST" action="/predict" enctype="multipart/form-data" id="upload-form">
+                                    <div class="mb-3">
+                                        <label for="file" class="form-label">Selecciona o arrastra una imagen del botón:</label>
+                                        <div id="preview-container">
+                                            <div id="drop-zone">
+                                                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                                <p class="upload-text">Arrastra una imagen aquí o haz clic para seleccionar</p>
+                                                <img id="image-preview" src="#" alt="Vista previa de la imagen">
+                                            </div>
+                                        </div>
+                                        <input class="form-control" type="file" name="file" id="file" accept="image/*,.heic,.HEIC" required>
+                                        <small class="text-muted">Formatos soportados: JPG, PNG, GIF, HEIC</small>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary" id="submit-upload-btn">
+                                            <i class="fas fa-search me-2"></i>Clasificar Imagen
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <!-- Contenido de la pestaña de cámara -->
+                            <div class="tab-pane fade" id="camera-content" role="tabpanel" aria-labelledby="camera-tab">
+                                <div class="mb-3">
+                                    <div id="camera-container" style="width: 100%; height: 300px; background-color: #000; position: relative; border-radius: 8px; overflow: hidden;">
+                                        <video id="camera-video" autoplay playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+                                        <div id="camera-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.2); color: white;">
+                                            <div id="camera-message">Permitir acceso a la cámara...</div>
+                                            <div id="camera-controls" style="position: absolute; bottom: 10px; left: 0; width: 100%; display: flex; justify-content: center; gap: 10px;">
+                                                <button type="button" class="camera-btn" id="capture-btn">
+                                                    <i class="fas fa-camera"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-light btn-sm" id="switch-camera-btn" style="display: none;">
+                                                    <i class="fas fa-sync-alt"></i> Cambiar cámara
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Canvas para capturar la imagen -->
+                                    <canvas id="capture-canvas" style="display: none;"></canvas>
+                                    
+                                    <!-- Vista previa de la imagen capturada -->
+                                    <div id="capture-preview-container" style="display: none; text-align: center; margin-top: 20px;">
+                                        <img id="captured-image" alt="Imagen capturada" class="img-fluid rounded">
+                                    </div>
+                                </div>
+                                
+                                <form id="camera-form" method="POST" action="/predict" enctype="multipart/form-data">
+                                    <input type="hidden" name="camera_image" id="camera-image-data">
+                                    <div class="d-grid gap-2">
+                                        <button type="button" class="btn btn-secondary mb-2" id="retake-btn" style="display: none;">
+                                            <i class="fas fa-redo me-2"></i>Tomar otra foto
+                                        </button>
+                                        <button type="submit" class="btn btn-primary" id="submit-camera-btn" style="display: none;">
+                                            <i class="fas fa-search me-2"></i>Clasificar Imagen
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Resultados del clasificador -->
+                        <div id="result-container" class="result-card">
+                            <div class="result-header">
+                                <h5 class="mb-0"><i class="fas fa-check-circle me-2"></i>Resultado de la clasificación</h5>
+                            </div>
+                            <div class="result-body">
+                                <div class="row">
+                                    <div class="col-md-5 mb-3">
+                                        <div class="position-relative">
+                                            <img id="result-image" src="" alt="Imagen analizada" class="img-fluid rounded">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="result-info">
+                                            <h4 class="mb-3">
+                                                <i class="fas fa-star text-warning me-2"></i>Resultado
+                                            </h4>
+                                            <div class="alert alert-primary mb-3">
+                                                <h3 id="prediction-result" class="mb-1">-</h3>
+                                                <div class="progress mb-2" style="height: 25px;">
+                                                    <div id="confidence-bar" class="progress-bar" role="progressbar" 
+                                                         style="width: 0%;" 
+                                                         aria-valuenow="0" 
+                                                         aria-valuemin="0" 
+                                                         aria-valuemax="100">
+                                                        0%
+                                                    </div>
+                                                </div>
+                                                <p class="mb-0">Nivel de confianza</p>
+                                            </div>
+                                            
+                                            <div id="other-predictions">
+                                                <h5>Otras posibilidades:</h5>
+                                                <ul class="list-group" id="other-predictions-list">
+                                                    <!-- Otras predicciones se añadirán aquí -->
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="mt-4">
+                                                <button type="button" class="btn btn-primary" id="classify-another-btn">
+                                                    <i class="fas fa-camera me-2"></i>Clasificar otra imagen
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <h5><i class="fas fa-lightbulb text-warning me-2"></i>Consejos para mejores resultados</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    Usa buena iluminación para que la imagen sea clara
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    Centra el botón en la imagen y evita fondos complejos
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    Toma la foto desde arriba para mostrar la forma completa
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    Evita sombras o reflejos que puedan afectar los colores
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre Nosotros</h2>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>ButtonCraft es una empresa familiar con más de 35 años de experiencia en la fabricación de botones de alta calidad para la industria textil y del diseño.</p>
+                    <p>Comenzamos como un pequeño taller en 1985 y hemos crecido hasta convertirnos en uno de los principales proveedores de botones en el país, sin perder la atención al detalle y la calidad que nos caracteriza.</p>
+                    <p>Nuestro equipo combina la experiencia artesanal con las últimas tecnologías para ofrecer productos innovadores que satisfacen las necesidades de nuestros clientes, desde grandes marcas hasta diseñadores independientes.</p>
+                    <a href="#contact" class="btn btn-custom mt-3">Contáctanos</a>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/400/320" alt="Sobre ButtonCraft">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Servicios</h2>
+            </div>
+            
+            <div class="row">
+                <!-- Feature 1 -->
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>Diseño Personalizado</h3>
+                        <p>Creamos botones personalizados según tus especificaciones, con asesoría de nuestros diseñadores expertos.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>Entregas Rápidas</h3>
+                        <p>Contamos con un sistema logístico eficiente para entregas puntuales en todo el país.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <h3>Materiales Sostenibles</h3>
+                        <p>Ofrecemos una línea de botones ecológicos fabricados con materiales reciclados y sostenibles.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>Fabricación a Medida</h3>
+                        <p>Adaptamos nuestros procesos para producir botones en diferentes tamaños, formas y cantidades.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3>Asesoría Técnica</h3>
+                        <p>Te ayudamos a elegir los botones ideales para tus proyectos, considerando funcionalidad y estética.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <h3>Garantía de Calidad</h3>
+                        <p>Todos nuestros productos pasan por estrictos controles de calidad y ofrecemos garantía en todos ellos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contacto</h2>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Dirección</h4>
+                                <p>Av. Industria 1234, Zona Industrial<br>Ciudad de México, CP 12345</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Teléfono</h4>
+                                <p>+52 (55) 1234-5678<br>+52 (55) 8765-4321</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>info@buttoncraft.com<br>ventas@buttoncraft.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Horario</h4>
+                                <p>Lunes a Viernes: 9:00 AM - 6:00 PM<br>Sábados: 9:00 AM - 1:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-7">
+                    <form class="contact-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Nombre completo" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Asunto">
+                        <textarea class="form-control" rows="5" placeholder="Mensaje" required></textarea>
+                        <button type="submit" class="btn btn-custom">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+            </div>
+            <p>&copy; 2025 ButtonCraft. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Variables globales
+        let stream = null;
+        let cameraFacingMode = 'environment'; // Comenzar con la cámara trasera
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const loadingMessage = document.getElementById('loading-message');
+
+        // Elementos DOM para la cámara
+        const cameraTab = document.getElementById('camera-tab');
+        const cameraContainer = document.getElementById('camera-container');
+        const cameraVideo = document.getElementById('camera-video');
+        const captureBtn = document.getElementById('capture-btn');
+        const switchCameraBtn = document.getElementById('switch-camera-btn');
+        const retakeBtn = document.getElementById('retake-btn');
+        const submitCameraBtn = document.getElementById('submit-camera-btn');
+        const captureCanvas = document.getElementById('capture-canvas');
+        const capturedImage = document.getElementById('captured-image');
+        const capturePreviewContainer = document.getElementById('capture-preview-container');
+        const cameraImageData = document.getElementById('camera-image-data');
+        const cameraForm = document.getElementById('camera-form');
+        const cameraMessage = document.getElementById('camera-message');
+
+        // Elementos del clasificador
+        const uploadForm = document.getElementById('upload-form');
+        const fileInput = document.getElementById('file');
+        const imagePreview = document.getElementById('image-preview');
+        const dropZone = document.getElementById('drop-zone');
+        const resultContainer = document.getElementById('result-container');
+        const resultImage = document.getElementById('result-image');
+        const predictionResult = document.getElementById('prediction-result');
+        const confidenceBar = document.getElementById('confidence-bar');
+        const otherPredictions = document.getElementById('other-predictions');
+        const otherPredictionsList = document.getElementById('other-predictions-list');
+        const classifyAnotherBtn = document.getElementById('classify-another-btn');
+
+        // Funciones de utilidad
+        function showLoading(message = 'Procesando imagen...') {
+            loadingMessage.textContent = message;
+            loadingIndicator.style.display = 'flex';
+        }
+
+        function hideLoading() {
+            loadingIndicator.style.display = 'none';
+        }
+
+        // Inicializar la cámara
+        function initCamera() {
+            // Mostrar el contenedor de la cámara
+            cameraContainer.style.display = 'block';
+            
+            // Limpiar el stream anterior si existe
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+            
+            // Verificar soporte del navegador
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                cameraMessage.textContent = 'Tu navegador no soporta acceso a la cámara';
+                return;
+            }
+
+            // Opciones de configuración de cámara
+            const constraints = {
+                video: {
+                    facingMode: cameraFacingMode
+                },
+                audio: false
+            };
+            
+            // Acceder a la cámara
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(function(videoStream) {
+                    stream = videoStream;
+                    cameraVideo.srcObject = stream;
+                    
+                    // Evento cuando el video está listo para reproducirse
+                    cameraVideo.onloadedmetadata = function() {
+                        // Usar una promesa para asegurar que el video comience a reproducirse
+                        cameraVideo.play()
+                            .then(() => {
+                                cameraMessage.textContent = 'Enfoca el botón y toma la foto';
+                            })
+                            .catch(error => {
+                                cameraMessage.textContent = 'Error al iniciar la cámara';
+                            });
+                    };
+                    
+                    // Verificar si hay múltiples cámaras
+                    navigator.mediaDevices.enumerateDevices()
+                        .then(devices => {
+                            const videoDevices = devices.filter(device => device.kind === 'videoinput');
+                            if (videoDevices.length > 1) {
+                                switchCameraBtn.style.display = 'block';
+                            }
+                        });
+                })
+                .catch(function(error) {
+                    if (error.name === 'NotAllowedError') {
+                        cameraMessage.textContent = 'Permiso de cámara denegado. Por favor, permite el acceso.';
+                    } else if (error.name === 'NotReadableError') {
+                        cameraMessage.textContent = 'La cámara está siendo usada por otra aplicación.';
+                    } else if (error.name === 'OverconstrainedError') {
+                        // Reintentar con constraints más básicos
+                        navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+                            .then(function(videoStream) {
+                                stream = videoStream;
+                                cameraVideo.srcObject = stream;
+                                cameraVideo.play();
+                                cameraMessage.textContent = 'Enfoca el botón y toma la foto';
+                            })
+                            .catch(function(fallbackError) {
+                                cameraMessage.textContent = 'Error al acceder a la cámara: ' + fallbackError.message;
+                            });
+                    } else {
+                        cameraMessage.textContent = 'Error al acceder a la cámara: ' + error.message;
+                    }
+                });
+        }
+
+        // Capturar imagen de la cámara
+        function captureImage() {
+            if (!stream) {
+                cameraMessage.textContent = 'Error: Cámara no disponible. Intenta recargar la página.';
+                return;
+            }
+            
+            // Obtener dimensiones del video
+            const videoWidth = cameraVideo.videoWidth || 640;
+            const videoHeight = cameraVideo.videoHeight || 480;
+            
+            // Configurar canvas con el tamaño del video
+            captureCanvas.width = videoWidth;
+            captureCanvas.height = videoHeight;
+            
+            try {
+                // Dibujar el frame actual en el canvas
+                const context = captureCanvas.getContext('2d');
+                context.drawImage(cameraVideo, 0, 0, videoWidth, videoHeight);
+                
+                // Convertir canvas a imagen data URL
+                const imageDataUrl = captureCanvas.toDataURL('image/jpeg', 0.9);
+                
+                // Mostrar imagen capturada
+                capturedImage.src = imageDataUrl;
+                capturePreviewContainer.style.display = 'block';
+                cameraContainer.style.display = 'none';
+                
+                // Guardar data URL en input hidden
+                cameraImageData.value = imageDataUrl;
+                
+                // Mostrar botones de control
+                retakeBtn.style.display = 'block';
+                submitCameraBtn.style.display = 'block';
+                
+            } catch (error) {
+                cameraMessage.textContent = 'Error al capturar la imagen: ' + error.message;
+            }
+        }
+
+        // Volver a tomar la foto
+        function retakePhoto() {
+            capturePreviewContainer.style.display = 'none';
+            cameraContainer.style.display = 'block';
+            retakeBtn.style.display = 'none';
+            submitCameraBtn.style.display = 'none';
+            cameraImageData.value = '';
+            
+            // Asegurar que la cámara sigue funcionando
+            if (!stream || stream.getVideoTracks()[0].readyState !== 'live') {
+                initCamera();
+            }
+        }
+
+        // Cambiar entre cámara frontal y trasera
+        function switchCamera() {
+            // Detener el stream actual
+            if (stream) {
+                stream.getTracks().forEach(track => {
+                    track.stop();
+                });
+                stream = null;
+            }
+            
+            // Cambiar modo de cámara
+            cameraFacingMode = cameraFacingMode === 'environment' ? 'user' : 'environment';
+            
+            // Reiniciar cámara con nuevo modo
+            initCamera();
+        }
+
+        // Función para validar formulario de subida de imagen
+        function validateImageForm() {
+            if (!fileInput) return true;
+            
+            if (fileInput.files.length === 0) {
+                alert('Por favor, selecciona una imagen');
+                return false;
+            }
+            
+            const file = fileInput.files[0];
+            
+            // Verificar tipo de archivo (incluir HEIC/HEIF)
+            const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/heic', 'image/heif'];
+            const validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.heic', '.heif'];
+            
+            // Verificar por tipo MIME o por extensión
+            const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
+            if (!validTypes.includes(file.type) && !validExtensions.includes(fileExtension)) {
+                // En caso de HEIC, verificar específicamente por la extensión
+                if (file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif')) {
+                    // Es un archivo HEIC/HEIF por extensión, permitirlo
+                    return true;
+                }
+                
+                alert('El archivo debe ser una imagen (JPEG, PNG, GIF o HEIC)');
+                return false;
+            }
+            
+            // Verificar tamaño (max 20MB)
+            if (file.size > 20 * 1024 * 1024) {
+                alert('La imagen es demasiado grande. Máximo 20MB.');
+                return false;
+            }
+            
+            return true;
+        }
+
+        // Función para mostrar resultados de clasificación 
+        function showClassificationResults(prediction, confidence, imageSrc, otherPredictions = []) {
+    try {
+        // Verificar que todos los parámetros necesarios estén definidos
+        if (!prediction || !confidence || !imageSrc) {
+            console.error('Datos de clasificación incompletos:', { prediction, confidence, imageSrc });
+            alert('Error: Datos de clasificación incompletos');
+            return;
+        }
+
+        // Verificar elementos del DOM
+        const resultContainer = document.getElementById('result-container');
+        const resultImage = document.getElementById('result-image');
+        const predictionResult = document.getElementById('prediction-result');
+        const confidenceBar = document.getElementById('confidence-bar');
+        const otherPredictionsList = document.getElementById('other-predictions-list');
+        const otherPredictionsContainer = document.getElementById('other-predictions');
+
+        if (!resultContainer || !resultImage || !predictionResult || 
+            !confidenceBar || !otherPredictionsList || !otherPredictionsContainer) {
+            console.error('Uno o más elementos del DOM no encontrados');
+            alert('Error: No se encontraron elementos necesarios en la página');
+            return;
+        }
+
+        // Mostrar contenedor de resultados
+        resultContainer.style.display = 'block';
+        
+        // Actualizar imagen
+        resultImage.src = imageSrc;
+        
+        // Actualizar predicción principal
+        predictionResult.textContent = prediction;
+        
+        // Actualizar barra de confianza
+        const confidencePercent = Math.round(confidence * 100);
+        confidenceBar.style.width = confidencePercent + '%';
+        confidenceBar.textContent = confidencePercent + '%';
+        confidenceBar.setAttribute('aria-valuenow', confidencePercent);
+        
+        // Actualizar otras predicciones
+        otherPredictionsList.innerHTML = '';
+        if (otherPredictions && otherPredictions.length > 0) {
+            otherPredictionsContainer.style.display = 'block';
+            otherPredictions.forEach(pred => {
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+                listItem.innerHTML = `
+                    ${pred.class}
+                    <span class="badge bg-secondary rounded-pill">${Math.round(pred.confidence * 100)}%</span>
+                `;
+                otherPredictionsList.appendChild(listItem);
+            });
+        } else {
+            otherPredictionsContainer.style.display = 'none';
+        }
+        
+        // Hacer scroll hacia los resultados
+        resultContainer.scrollIntoView({ behavior: 'smooth' });
+    } catch (error) {
+        console.error('Error en showClassificationResults:', error);
+        alert('Error al mostrar resultados de clasificación');
+    }
+}
+
+        // Limpiar resultados
+        function clearResults() {
+            resultContainer.style.display = 'none';
+            
+            // Reset del formulario
+            if (uploadForm) uploadForm.reset();
+            
+            // Limpiar vista previa
+            imagePreview.src = '#';
+            imagePreview.style.display = 'none';
+            
+            // Mostrar texto del dropzone
+            dropZone.querySelector('.upload-icon').style.display = 'block';
+            dropZone.querySelector('.upload-text').style.display = 'block';
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Eventos para los elementos de cámara
+            if (cameraTab) {
+                cameraTab.addEventListener('click', function() {
+                    // Dar tiempo a que la pestaña se active antes de inicializar la cámara
+                    setTimeout(initCamera, 300);
+                });
+            }
+            
+            if (captureBtn) {
+                captureBtn.addEventListener('click', captureImage);
+            }
+            
+            if (retakeBtn) {
+                retakeBtn.addEventListener('click', retakePhoto);
+            }
+            
+            if (switchCameraBtn) {
+                switchCameraBtn.addEventListener('click', switchCamera);
+            }
+            
+            // Vista previa de imagen al seleccionarla
+            if (fileInput) {
+                fileInput.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        var reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                            imagePreview.src = e.target.result;
+                            imagePreview.style.display = 'block';
+                            dropZone.querySelector('.upload-icon').style.display = 'none';
+                            dropZone.querySelector('.upload-text').style.display = 'none';
+                        }
+                        
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
+            }
+            
+            // Drag & drop para imágenes
+            if (dropZone) {
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    dropZone.addEventListener(eventName, function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }, false);
+                });
+                
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    dropZone.addEventListener(eventName, function() {
+                        this.parentElement.style.borderColor = 'var(--primary)';
+                        this.parentElement.style.backgroundColor = 'rgba(255, 107, 107, 0.05)';
+                    }, false);
+                });
+                
+                ['dragleave', 'drop'].forEach(eventName => {
+                    dropZone.addEventListener(eventName, function() {
+                        this.parentElement.style.borderColor = '#ccc';
+                        this.parentElement.style.backgroundColor = '#f8f9fa';
+                    }, false);
+                });
+                
+                dropZone.addEventListener('drop', function(e) {
+                    if (e.dataTransfer.files.length) {
+                        fileInput.files = e.dataTransfer.files;
+                        // Disparar evento change para actualizar vista previa
+                        const event = new Event('change', { bubbles: true });
+                        fileInput.dispatchEvent(event);
+                    }
+                }, false);
+                
+                // Click en dropZone activa fileInput
+                dropZone.addEventListener('click', function() {
+                    fileInput.click();
+                });
+            }
+            
+            // Validar formulario de subida
+            if (uploadForm) {
+                uploadForm.addEventListener('submit', function(e) {
+                    if (!validateImageForm()) {
+                        e.preventDefault();
+                        return;
+                    }
+                    
+                    // Interceptar envío normal para usar AJAX
+                    e.preventDefault();
+                    
+                    showLoading('Clasificando imagen...');
+                    
+                    // Crear FormData y añadir la imagen
+                    const formData = new FormData(this);
+                    
+                    // Enviar a la API de clasificación
+                    fetch('/predict', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        hideLoading();
+                        
+                        if (data.status === 'ok') {
+                            // Mostrar resultados
+                            const imageSrc = URL.createObjectURL(fileInput.files[0]);
+                            showClassificationResults(
+                                data.prediction, 
+                                data.confidence, 
+                                imageSrc,
+                                data.all_predictions ? data.all_predictions.slice(1) : []
+                            );
+                        } else {
+                            alert('Error: ' + (data.message || 'No se pudo procesar la imagen'));
+                        }
+                    })
+                    .catch(error => {
+                        hideLoading();
+                        console.error('Error:', error);
+                        alert('Ocurrió un error al procesar la imagen. Por favor, inténtalo de nuevo 2.');
+                    });
+                });
+            }
+            
+            // Capturar envío del formulario de cámara
+            if (cameraForm) {
+                cameraForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    if (!cameraImageData.value) {
+                        alert('Por favor, toma una foto primero');
+                        return;
+                    }
+                    
+                    showLoading('Clasificando imagen...');
+                    
+                    // Crear FormData y añadir la imagen
+                    const formData = new FormData();
+                    
+                    // Convertir imagen base64 a archivo
+                    fetch(cameraImageData.value)
+                        .then(res => res.blob())
+                        .then(blob => {
+                            const file = new File([blob], "camera-capture.jpg", {type: "image/jpeg"});
+                            formData.append('file', file);
+                            
+                            // Enviar el formulario a la API
+                            fetch('/api/predict', {
+                                method: 'POST',
+                                body: formData
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                hideLoading();
+                                
+                                if (data.status === 'ok') {
+                                    // Mostrar resultados
+                                    showClassificationResults(
+                                        data.prediction, 
+                                        data.confidence, 
+                                        cameraImageData.value,
+                                        data.all_predictions ? data.all_predictions.slice(1) : []
+                                    );
+                                } else {
+                                    alert('Error: ' + (data.message || 'No se pudo procesar la imagen'));
+                                }
+                            })
+                            .catch(error => {
+                                hideLoading();
+                                console.error('Error:', error);
+                                alert('Ocurrió un error al procesar la imagen. Por favor, inténtalo de nuevo.');
+                            });
+                        });
+                });
+            }
+            
+            // Botón para clasificar otra imagen
+            if (classifyAnotherBtn) {
+                classifyAnotherBtn.addEventListener('click', clearResults);
+            }
+            
+            // Limpiar cuando se cambia a la pestaña de subida
+            const uploadTab = document.querySelector('button[data-bs-target="#upload-content"]');
+            if (uploadTab) {
+                uploadTab.addEventListener('click', function() {
+                    // Limpiar recursos de cámara
+                    if (stream) {
+                        stream.getTracks().forEach(track => {
+                            track.stop();
+                        });
+                        stream = null;
+                    }
+                });
+            }
+            
+            // Smooth scrolling para anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update active nav link
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                });
+            });
+            
+            // Change navbar style on scroll
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.padding = '10px 0';
+                    navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.97)';
+                    navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                } else {
+                    navbar.style.padding = '15px 0';
+                    navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                    navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                }
+                
+                // Update active nav link based on scroll position
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    
+                    if (window.scrollY >= sectionTop - navbarHeight - 100) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Limpiar recursos al salir de la página
+        window.addEventListener('beforeunload', function() {
+            if (stream) {
+                stream.getTracks().forEach(track => {
+                    track.stop();
+                });
+                stream = null;
+            }
+        });
+    </script>
+</body>
+</html>

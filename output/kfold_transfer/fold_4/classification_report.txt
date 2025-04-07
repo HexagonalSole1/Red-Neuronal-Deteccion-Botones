@@ -1,0 +1,18 @@
+                         precision    recall  f1-score   support
+
+  boton_diamante_morado       0.73      0.98      0.84        55
+       boton_multicolor       0.65      1.00      0.79        52
+   boton_perrito_dorado       0.98      1.00      0.99        80
+  boton_azul_2_agujeros       0.51      0.97      0.67        80
+      boton_gatito_azul       1.00      0.95      0.97        60
+     boton_dorado_ancla       0.99      0.97      0.98        71
+      boton_azul_marino       1.00      0.21      0.35        56
+             boton_azul       0.95      0.75      0.84        51
+             boton_cafe       0.88      0.38      0.53        60
+boton_madera_2_agujeros       0.73      0.88      0.80        56
+         boton_pinguino       0.96      0.68      0.79        71
+           boton_madera       1.00      0.62      0.77        50
+
+               accuracy                           0.80       742
+              macro avg       0.86      0.78      0.78       742
+           weighted avg       0.86      0.80      0.78       742
